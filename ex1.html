@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess the Number Game</title>
+</head>
+<body>
+  <h1>Guess the Number Game</h1>
+  <button onclick="startNewGame()">Start New Game</button>
+</body>
+<script>// Fonction pour générer un nombre aléatoire dans un intervalle donné
+
+    function generateRandomNumber(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    
+    // Fonction pour gérer une partie du jeu
+    function playGame(difficulty) {
+      let min, max, maxAttempts;
+      
+      // Déterminer l'intervalle et le nombre de tentatives en fonction de la difficulté choisie
+      switch (difficulty) {
+        case 'Facile':
+          min = 1;
+          max = 10;
+          maxAttempts = 3;
+          break;
+        case 'Intermédiaire':
+          min = 1;
+          max = 50;
+          maxAttempts = 5;
+          break;
+        case 'Difficile':
+          min = 1;
+          max = 100;
+          maxAttempts = 10;
+          break;
+        default:
+          alert('Difficulté non reconnue.');
+          return;
+      }
+      
+      // Générer un nombre aléatoire
+      const secretNumber = generateRandomNumber(min, max);
+      
+      // Boucle pour les tentatives
+      for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+        // Demander à l'utilisateur de deviner le nombre
+        const guess = parseInt(prompt(`Tentative ${attempt}/${maxAttempts}. Devinez le nombre entre ${min} et ${max}:`));
+        
+        // Vérifier si le nombre deviné est correct
+        if (guess === secretNumber) {
+          alert(`Bravo! Vous avez deviné le nombre ${secretNumber} en ${attempt} tentatives.`);
+          return;
+        } else if (guess < secretNumber) {
+          alert('Le nombre est plus grand.');
+        } else {
+          alert('Le nombre est plus petit.');
+        }
+      }
+      
+      // Si le joueur n'a pas deviné le nombre après toutes les tentatives
+      alert(`Désolé, vous avez épuisé toutes vos tentatives. Le nombre était ${secretNumber}.`);
+    }
+    
+    // Fonction pour démarrer une nouvelle partie
+    function startNewGame() {
+      const difficulty = prompt('Choisissez la difficulté: Facile, Intermédiaire ou Difficile.');
+      
+      if (difficulty) {
+        playGame(difficulty);
+        const replay = confirm('Voulez-vous rejouer?');
+        if (replay) {
+          startNewGame();
+        }
+      }
+    }
+    
+    // Démarrer la première partie
+    
+    </script>
+</html>

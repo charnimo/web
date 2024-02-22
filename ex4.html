@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Changez la couleur des éléments de la liste</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        #liste {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #liste li {
+            background-color: #ffffff;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Changez la couleur des éléments de la liste</h2>
+
+    <ol id="liste">
+        <li>Élément 1</li>
+        <li>Élément 2</li>
+        <li>Élément 3</li>
+        <li>Élément 4</li>
+        <li>Élément 5</li>
+    </ol>
+
+    <script>
+        // Sélectionnez tous les éléments li dans la liste
+        var elements = document.querySelectorAll('#liste li');
+
+        // Parcourez chaque élément de la liste
+        elements.forEach(function(element) {
+            // Ajoutez un écouteur d'événements 'click' à chaque élément
+            element.addEventListener('click', function() {
+                // Génère une couleur aléatoire en utilisant la fonction `randomColor()`
+                var color = randomColor();
+                // Modifie la couleur de fond de l'élément cliqué
+                element.style.backgroundColor = color;
+            });
+        });
+
+        // Fonction pour générer une couleur aléatoire
+        function randomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+
+</body>
+</html>
