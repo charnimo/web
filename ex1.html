@@ -9,7 +9,7 @@
   <h1>Guess the Number Game</h1>
   <button onclick="startNewGame()">Start New Game</button>
 </body>
-<script>// Fonction pour générer un nombre aléatoire dans un intervalle donné
+<script>
 
     function generateRandomNumber(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -18,8 +18,6 @@
     // Fonction pour gérer une partie du jeu
     function playGame(difficulty) {
       let min, max, maxAttempts;
-      
-      // Déterminer l'intervalle et le nombre de tentatives en fonction de la difficulté choisie
       switch (difficulty) {
         case 'Facile':
           min = 1;
